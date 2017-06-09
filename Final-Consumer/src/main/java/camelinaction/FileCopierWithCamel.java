@@ -57,7 +57,6 @@ public class FileCopierWithCamel {
 						public void process(Exchange e) throws Exception {
 							String[] data = e.getIn().getBody(String.class).split("signed");
 							if(data.length==2){
-	            		      	String rawMessage = data[0];
 	            		      	int password = Integer.parseInt(data[1]);
 	            		      	
 	            		        String body = e.getIn().getBody(String.class);
@@ -104,7 +103,7 @@ public class FileCopierWithCamel {
 							// TODO Auto-generated method stub
 							ticMSFT.ticMsgProcess(e.getIn().getBody(String.class));
 							StringBuilder sb = new StringBuilder();
-							sb.append(ticIBM.getName() + "\t");
+							sb.append(ticMSFT.getName() + "\t");
 							ticMSFT.setStrategy(new CalculateMax());
 							sb.append(formatter.format(ticMSFT.getBidPrice()) + "\t"); 
 							sb.append(formatter.format(ticMSFT.getAskPrice()) + "\t");
@@ -117,7 +116,7 @@ public class FileCopierWithCamel {
 							sb.append(formatter.format(ticMSFT.getBidPrice()) + "\t"); 
 							sb.append(formatter.format(ticMSFT.getAskPrice()) + "\t");
 							e.getIn().setBody(sb);
-							System.out.println(ticIBM.getName() + sb.toString());
+							System.out.println(ticMSFT.getName() + sb.toString());
 						}
 	                }).to("jms:topic:Final_Topic_MSFT")
 	            	
@@ -127,7 +126,7 @@ public class FileCopierWithCamel {
 							
 							ticORCL.ticMsgProcess(e.getIn().getBody(String.class));
 							StringBuilder sb = new StringBuilder();
-							sb.append(ticIBM.getName() + "\t");
+							sb.append(ticORCL.getName() + "\t");
 							ticORCL.setStrategy(new CalculateMax());
 							sb.append(formatter.format(ticORCL.getBidPrice()) + "\t"); 
 							sb.append(formatter.format(ticORCL.getAskPrice()) + "\t");
@@ -140,7 +139,7 @@ public class FileCopierWithCamel {
 							sb.append(formatter.format(ticORCL.getBidPrice()) + "\t"); 
 							sb.append(formatter.format(ticORCL.getAskPrice()) + "\t");
 							e.getIn().setBody(sb);
-							System.out.println(ticIBM.getName() + sb.toString());
+							System.out.println(ticORCL.getName() + sb.toString());
 						}
 	                }).to("jms:topic:Final_Topic_ORCL")
 	                .otherwise()

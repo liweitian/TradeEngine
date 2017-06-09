@@ -11,8 +11,6 @@ public class TicData {
 	private int totalNumofAsk;
 	private double totalPriceOfBid;
 	private double totalPriceOfAsk;
-	private double squareBid;
-	private double squareAsk;
 	
 	public TicData(String company) {
 		this.company = company;
@@ -41,9 +39,6 @@ public class TicData {
 	        totalPriceOfBid += bidPrice * bidNum;
 	        totalPriceOfAsk += askPrice * askNum;
 	        
-	        squareBid += Math.pow(bidPrice, 2) * bidNum;
-	        squareAsk += Math.pow(askPrice, 2) * askNum;
-	        
 	    }
 	
 	public String getName() {
@@ -56,11 +51,11 @@ public class TicData {
 	}
 	
 	public double getBidPrice() {
-		return strategy.calculate(squareBid, minBid, totalNumOfBid, totalPriceOfBid);
+		return strategy.calculate(minBid, maxBid, totalNumOfBid, totalPriceOfBid);
 	}
 	
 	public double getAskPrice() {
-		return strategy.calculate(squareAsk, minAsk, totalNumofAsk, totalPriceOfAsk);
+		return strategy.calculate(minAsk, maxAsk, totalNumofAsk, totalPriceOfAsk);
 	}
 	
 }

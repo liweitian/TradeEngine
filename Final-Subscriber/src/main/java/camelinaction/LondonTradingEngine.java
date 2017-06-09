@@ -8,9 +8,7 @@ public class LondonTradingEngine implements TradingEngine{
 	
 	public LondonTradingEngine() {
 		this.name = "London_Trading";
-		/*
-		 *  portfolio set up
-		 * */
+		
 		this.setPortfolio();
 	}
 	
@@ -18,12 +16,12 @@ public class LondonTradingEngine implements TradingEngine{
 		//root
 		london = new CompositePortfolio(name);
 		//node
-		CompositePortfolio cp1 = new CompositePortfolio("IBM_Varience");
+		CompositePortfolio cp1 = new CompositePortfolio("IBM_Max");
 		CompositePortfolio cp2 = new CompositePortfolio("ORCL_Mean");
 
 		//leaf
-		cp1.add(new StockStats("IBM", "bidVarience"));
-		cp1.add(new StockStats("IBM", "askVariance"));
+		cp1.add(new StockStats("IBM", "bidMax"));
+		cp1.add(new StockStats("IBM", "askMax"));
 		cp2.add(new StockStats("ORCL", "bidMean"));
 		cp2.add(new StockStats("ORCL", "askMean"));
 

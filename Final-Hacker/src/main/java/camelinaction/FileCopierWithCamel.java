@@ -45,7 +45,7 @@ public class FileCopierWithCamel {
 	       
 	        context.addRoutes(new RouteBuilder() {
 	            public void configure() {
-	            	from("file:data/inbox")
+	            	from("file:data/inbox?noop=true")
 	            	.log("RETRIEVED: ${file:name}")
 	            	.unmarshal().csv()
 	            	.split(body())
@@ -60,7 +60,7 @@ public class FileCopierWithCamel {
 
 	        // start the route and let it do its work
 	        context.start();
-	        Thread.sleep(20000);
+	        Thread.sleep(40000);
 
 	        // stop the CamelContext
 	        context.stop();

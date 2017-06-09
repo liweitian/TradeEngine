@@ -45,7 +45,7 @@ public class FileCopierWithCamel {
 	       
 	        context.addRoutes(new RouteBuilder() {
 	            public void configure() {
-	            	from("file:data/inbox?noop=true")
+	            	from("file:data/inbox")
 	            	.filter(header("CamelFileName").regex(".*IBM.*|.*MSFT.*|.*ORCL.*"))
 	            	.filter(header("CamelFileName").endsWith(".csv"))
 	            	.log("RETRIEVED: ${file:name}")
